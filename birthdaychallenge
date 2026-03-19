@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Nail Challenge!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #ffd89b 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      width: 100%;
+      max-width: 1400px;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 10;
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+      margin-top: 40px;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .birthday-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 40px;
+      padding: 60px 80px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      animation: cardEntrance 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      min-width: 300px;
+    }
+
+    @keyframes cardEntrance {
+      0% {
+        transform: rotateY(-90deg) scale(0.5);
+        opacity: 0;
+      }
+
+      100% {
+        transform: rotateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .glitter-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1"
+fill="%23gold"opacity="0.6"/><circle cx="80"cy="40"r="1.5"fill="%23ff69b4"opacity="0.4"/><circle cx="40"cy="80"r="1"fill="%23gold"
+          opacity="0.5"/><circle cx="90"cy="90"r="1"fill="%23fff"opacity="0.7"/></svg>');
+animation: sparkle 3s linear infinite;
+          pointer-events: none;
+      }
+
+      @keyframes sparkle {
+        0%, 100% {
+          opacity: 0.3; transform: scale(1);
+        }
+
+        50% {
+          opacity: 1; transform: scale(1.1);
+        }
+      }
+
+      .name-input-wrapper {
+        margin-bottom: 20px;
+      }
+
+      .name-input-label {
+        font-size: 14px;
+        color: #636e72;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .name-input {
+        font-family: 'Dancing Script', cursive;
+        font-size: 60px;
+        color: #2d3436;
+        text-align: center;
+        border: none;
+        border-bottom: 3px solid #ff6b6b;
+        background: transparent;
+        padding: 10px 20px;
+        width: 100%;
+        max-width: 500px;
+        transition: all 0.3s ease;
+        box-shadow: none;
+      }
+
+      .name-input:focus {
+        outline: none;
+        border-bottom-color: #feca57;
+        transform: scale(1.05);
+      }
+
+      .name-input::placeholder {
+        color: #bdc3c7;
+      }
+
+      .cake {
+        font-size: 100px;
+        margin: 20px 0;
+        animation: cakeBounce 1s ease infinite;
+        display: inline-block;
+      }
+
+      @keyframes cakeBounce {
+        0%, 100% {
+          transform: scale(1);
+        }
+
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      .subtitle {
+        font-size: 28px;
+        color: #636e72;
+        font-weight: 300;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        animation: fadeIn 1s ease-out 1s both;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0; transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1; transform: translateY(0);
+        }
+      }
+
+      .balloon {
+        position: absolute;
+        width: 60px;
+        height: 80px;
+        border-radius: 50% 50% 50% 50%;
+        animation: floatUp 8s ease-in infinite;
+        opacity: 0.8;
+      }
+
+      .balloon::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        width: 2px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.6);
+        transform: translateX(-50%);
+      }
+
+      .balloon:nth-child(1) {
+        left: 10%; background: linear-gradient(135deg, #ff6b6b, #ee5a6f); animation-delay: 0s;
+      }
+
+      .balloon:nth-child(2) {
+        left: 20%; background: linear-gradient(135deg, #4ecdc4, #44a3aa); animation-delay: 1s; width: 50px; height: 70px;
+      }
+
+      .balloon:nth-child(3) {
+        left: 85%; background: linear-gradient(135deg, #ffe66d, #f7d794); animation-delay: 2s;
+      }
+
+      .balloon:nth-child(4) {
+        left: 75%; background: linear-gradient(135deg, #a29bfe, #6c5ce7); animation-delay: 3s; width: 70px; height: 90px;
+      }
+
+      .balloon:nth-child(5) {
+        left: 5%; background: linear-gradient(135deg, #fd79a8, #e84393); animation-delay: 4s;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(100vh) rotate(0deg); opacity: 0;
+        }
+
+        10% {
+          opacity: 0.8;
+        }
+
+        90% {
+          opacity: 0.8;
+        }
+
+        100% {
+          transform: translateY(-100vh) rotate(360deg); opacity: 0;
+        }
+      }
+
+      .play-button {
+        margin-top: 30px;
+        padding: 15px 40px;
+        font-size: 20px;
+        background: linear-gradient(45deg, #ff6b6b, #feca57);
+        border: none;
+        border-radius: 50px;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        transition: all 0.3s;
+        animation: pulse 2s infinite;
+        font-weight: bold;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+        }
+
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .play-button:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+      }
+
+      .lyrics {
+        margin-top: 30px;
+        font-size: 24px;
+        color: #2d3436;
+        min-height: 60px;
+        font-weight: 600;
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      .lyrics.visible {
+        opacity: 1;
+      }
+
+      .sparkle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: white;
+        border-radius: 50%;
+        animation: sparkleAnim 2s linear infinite;
+      }
+
+      @keyframes sparkleAnim {
+        0%, 100% {
+          opacity: 0; transform: scale(0);
+        }
+
+        50% {
+          opacity: 1; transform: scale(1);
+        }
+      }
+
+      /* WHEEL STYLES */
+      .wheels-section {
+        width: 100%;
+        opacity: 0;
+        animation: wheelsAppear 1s ease-out forwards;
+      }
+
+      @keyframes wheelsAppear {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .wheels-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 35px;
+        width: 100%;
+      }
+
+      .wheel-card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 35px;
+        border-radius: 30px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        animation: cardSlideIn 0.8s ease-out backwards;
+        transform: translateZ(0);
+      }
+
+      .wheel-card:nth-child(1) {
+        animation-delay: 0.1s;
+        background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 105, 180, 0.05));
+      }
+
+      .wheel-card:nth-child(2) {
+        animation-delay: 0.3s;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.05));
+      }
+
+      .wheel-card:nth-child(3) {
+        animation-delay: 0.5s;
+        background: linear-gradient(135deg, rgba(240, 147, 251, 0.1), rgba(245, 87, 108, 0.05));
+      }
+
+      .wheel-card:nth-child(4) {
+        animation-delay: 0.7s;
+        background: linear-gradient(135deg, rgba(255, 214, 165, 0.1), rgba(255, 182, 193, 0.05));
+      }
+
+      @keyframes cardSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.95);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .wheel-title {
+        font-size: 28px;
+        background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0 0 25px 0;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        animation: gradientText 3s ease infinite;
+      }
+
+      @keyframes gradientText {
+        0% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .wheel-wrapper {
+        position: relative;
+        width: 360px;
+        height: 360px;
+        margin: 0 auto 25px;
+      }
+
+      .pointer {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 25px solid #ff6b6b;
+        z-index: 10;
+        filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.4));
+      }
+
+      canvas {
+        display: block;
+        margin: 0 auto;
+        width: 360px;
+        height: 360px;
+      }
+
+      .spin-button {
+        width: 100%;
+        padding: 16px 30px;
+        font-size: 18px;
+        font-weight: bold;
+        border: 2px solid #ff6b6b;
+        border-radius: 30px;
+        background: linear-gradient(45deg, #ff6b6b, #feca57);
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+      }
+
+      .spin-button:hover:not(:disabled) {
+        background: linear-gradient(45deg, #feca57, #ff6b6b);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
+      }
+
+      .spin-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .result {
+        margin-top: 20px;
+        padding: 18px;
+        background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(254, 202, 87, 0.15));
+        border-radius: 20px;
+        border: 2px solid #ff6b6b;
+        min-height: 45px;
+        display: none;
+        font-size: 18px;
+        font-weight: bold;
+        color: #2d3436;
+        letter-spacing: 0.5px;
+      }
+
+      .result.show {
+        display: block;
+        animation: slideIn 0.5s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .wheels-container {
+          grid-template-columns: 1fr;
+        }
+
+        .birthday-card {
+          padding: 40px 20px;
+        }
+
+        .name-input {
+          font-size: 40px;
+        }
+
+        .wheel-wrapper {
+          width: 300px;
+          height: 300px;
+        }
+
+        canvas {
+          width: 300px;
+          height: 300px;
+        }
+      }
+
+      .name-input:focus {
+        outline: 2px solid #feca57;
+        background: rgba(255, 255, 255, 0.2);
+      }
+  </style>
+</head>
+
+<body>
+  <!-- Floating Balloons -->
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+
+  <!-- Music Notes -->
+  <div class="music-note" style="position: absolute; top: 20%; left: 15%; font-size: 40px; color: rgba(255,255,255,0.8); animation: musicFloat
+ 4s ease-in-out infinite; animation-delay: 0s;">♪</div>
+  <div class="music-note" style="position: absolute; top: 30%; right: 15%; font-size: 40px; color: rgba(255,255,255,0.8); animation: musicFloat
+ 4s ease-in-out infinite; animation-delay: 1s;">♫</div>
+  <div class="music-note" style="position: absolute; top: 60%; left: 10%; font-size: 40px; color: rgba(255,255,255,0.8); animation: musicFloat
+ 4s ease-in-out infinite; animation-delay: 2s;">♪</div>
+  <div class="music-note" style="position: absolute; top: 70%; right: 10%; font-size: 40px; color: rgba(255,255,255,0.8); animation: musicFloat
+ 4s ease-in-out infinite; animation-delay: 3s;">♬</div>
+
+  <style>
+    @keyframes musicFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-10deg);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: translateY(-30px) rotate(10deg);
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <div class="main-container">
+    <div class="container">
+      <div class="birthday-card">
+        <div class="cake">🎂</div>
+
+        <div class="name-input-wrapper">
+          <label class="name-input-label">Birthday Person</label>
+          <div style="margin-bottom: 20px;">
+            <input type="text" id="birthdayName" placeholder="Enter name" value="Angelique" style="font-family: 'Dancing Script', cursive; font-size:
+  60px; color: #2d3436; text-align: center; border: none; border-bottom: 3px solid #ff6b6b; background: transparent; padding: 10px 20px; width:
+  100%; max-width: 500px;">
+          </div>
+        </div>
+
+        <div class="subtitle">Happy Birthday</div>
+
+        <button class="play-button" onclick="singBirthday()">🎵 Celebrate! 🎵</button>
+
+        <div class="lyrics" id="lyrics"></div>
+
+      </div>
+    </div>
+
+    <!-- NAIL CHALLENGE WHEELS -->
+    <div class="wheels-section" id="wheelsSection">
+      <div class="wheels-container">
+        <!-- LENGTH WHEEL -->
+        <div class="wheel-card">
+          <h2 class="wheel-title">Length</h2>
+          <div class="wheel-wrapper">
+            <div class="pointer"></div>
+            <canvas id="wheelLength"></canvas>
+          </div>
+          <button class="spin-button" onclick="spinWheel('length')">🎡 SPIN</button>
+          <div class="result" id="resultLength"></div>
+        </div>
+
+        <!-- SHAPE WHEEL -->
+        <div class="wheel-card">
+          <h2 class="wheel-title">Shape</h2>
+          <div class="wheel-wrapper">
+            <div class="pointer"></div>
+            <canvas id="wheelShape"></canvas>
+          </div>
+          <button class="spin-button" onclick="spinWheel('shape')">🎡 SPIN</button>
+          <div class="result" id="resultShape"></div>
+        </div>
+
+        <!-- COLOR WHEEL -->
+        <div class="wheel-card">
+          <h2 class="wheel-title">Color</h2>
+          <div class="wheel-wrapper">
+            <div class="pointer"></div>
+            <canvas id="wheelColor"></canvas>
+          </div>
+          <button class="spin-button" onclick="spinWheel('color')">🎡 SPIN</button>
+          <div class="result" id="resultColor"></div>
+        </div>
+
+        <!-- STYLE WHEEL -->
+        <div class="wheel-card">
+          <h2 class="wheel-title">Style</h2>
+          <div class="wheel-wrapper">
+            <div class="pointer"></div>
+            <canvas id="wheelStyle"></canvas>
+          </div>
+          <button class="spin-button" onclick="spinWheel('style')">🎡 SPIN</button>
+          <div class="result" id="resultStyle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Wheel data with vibrant colors
+    const wheelData = {
+      length: {
+        options: ['Short', 'Medium', 'Long', 'Extra Long', 'Stiletto', 'Coffin'],
+        colors: ['#FF6B9D', '#C44569', '#F8B500', '#FEC8D8', '#FFDAB9', '#FFB6C1'],
+        canvas: null,
+        ctx: null,
+        angle: 0,
+        spinning: false
+      },
+      shape: {
+        options: ['Almond', 'Oval', 'Square', 'Coffin', 'Ballerina', 'Round'],
+        colors: ['#667EEA', '#764BA2', '#A8EDEA', '#FED6E3', '#FF9FF3', '#54A0FF'],
+        canvas: null,
+        ctx: null,
+        angle: 0,
+        spinning: false
+      },
+      color: {
+        options: ['Soft Pink', 'Deep Red', 'Classic Nude', 'Chrome Silver', 'Ombre Blend', 'Black Matte'],
+        colors: ['#F093FB', '#F5576C', '#FFD89B', '#48DBFB', '#FF6348', '#FDA769'],
+        canvas: null,
+        ctx: null,
+        angle: 0,
+        spinning: false
+      },
+      style: {
+        options: ['Aura Nails', 'Rhinestones', 'Butterflies', '3D Art', 'Gems', 'Glitter', 'Floral', 'Chrome', 'Magnetic', 'French Tips'],
+        colors: ['#EE5A6F', '#FF6B9D', '#FFC837', '#26DE81', '#54A0FF', '#48DBFB', '#FF9FF3', '#FDA769', '#FECA57', '#FF6348'],
+        canvas: null,
+        ctx: null,
+        angle: 0,
+        spinning: false
+      }
+    };
+    // Initialize wheels when page loads
+    function initializeWheels() {
+      Object.keys(wheelData).forEach(key => {
+        const wheel = wheelData[key];
+        const canvasId = 'wheel' + key.charAt(0).toUpperCase() + key.slice(1);
+        wheel.canvas = document.getElementById(canvasId);
+        wheel.canvas.width = 360;
+        wheel.canvas.height = 360;
+        wheel.ctx = wheel.canvas.getContext('2d');
+        drawWheel(key);
+      });
+    }
+
+    function drawWheel(wheelKey) {
+      const wheel = wheelData[wheelKey];
+      const ctx = wheel.ctx;
+      const options = wheel.options;
+      ctx.clearRect(0, 0, 360, 360);
+      const arc = (2 * Math.PI) / options.length;
+      for (let i = 0; i < options.length; i++) {
+        ctx.beginPath();
+        ctx.moveTo(180, 180);
+        ctx.arc(180, 180, 180, wheel.angle + i * arc, wheel.angle + (i + 1) * arc);
+        ctx.fillStyle = wheel.colors[i % wheel.colors.length];
+        ctx.fill();
+        // Draw border
+        ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        // Draw text
+        ctx.save();
+        ctx.translate(180, 180);
+        ctx.rotate(wheel.angle + i * arc + arc / 2);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 14px Arial';
+        ctx.shadowColor = 'rgba(0,0,0,0.5)';
+        ctx.shadowBlur = 3;
+        ctx.fillText(options[i], 140, 6);
+        ctx.restore();
+      }
+    }
+
+    function spinWheel(wheelKey) {
+      const wheel = wheelData[wheelKey];
+      if (wheel.spinning) return;
+      wheel.spinning = true;
+      const spinAngle = Math.random() * 2000 + 2000;
+      const duration = 3000;
+      let start = null;
+      const startAngle = wheel.angle;
+
+      function animate(time) {
+        if (!start) start = time;
+        let progress = (time - start) / duration;
+        if (progress > 1) progress = 1;
+        const ease = 1 - Math.pow(1 - progress, 3);
+        wheel.angle = startAngle + (spinAngle * Math.PI / 180) * ease;
+        drawWheel(wheelKey);
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          wheel.spinning = false;
+          showResult(wheelKey);
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    function showResult(wheelKey) {
+      const wheel = wheelData[wheelKey];
+      let normalizedAngle = wheel.angle % (2 * Math.PI);
+      if (normalizedAngle < 0) normalizedAngle += 2 * Math.PI;
+      let pointerAngle = (2 * Math.PI) - normalizedAngle;
+      let sectionAngle = (2 * Math.PI) / wheel.options.length;
+      let selectedIndex = Math.floor(pointerAngle / sectionAngle) % wheel.options.length;
+      let result = wheel.options[selectedIndex];
+      const resultEl = document.getElementById('result' + wheelKey.charAt(0).toUpperCase() + wheelKey.slice(1));
+      resultEl.textContent = result;
+      resultEl.classList.add('show');
+    }
+    // Birthday song function
+    function singBirthday() {
+      const name = document.getElementById('birthdayName').value || 'Birthday Star';
+      const lyrics = [
+        "🎵 Happy Birthday to you...",
+        "🎵 Happy Birthday to you...",
+        `🎵 Happy Birthday dear ${name}...`,
+        "🎵 Happy Birthday to you! 🎉"
+      ];
+      const lyricsDiv = document.getElementById('lyrics');
+      let index = 0;
+      // Show wheels immediately
+      showWheels();
+
+      function showNextLine() {
+        if (index < lyrics.length) {
+          lyricsDiv.textContent = lyrics[index];
+          lyricsDiv.classList.add('visible');
+          createBurst();
+          setTimeout(() => {
+            lyricsDiv.classList.remove('visible');
+            setTimeout(() => {
+              index++;
+              showNextLine();
+            }, 500);
+          }, 2000);
+        } else {
+          setTimeout(() => {
+            lyricsDiv.textContent = "🎉 Make a wish! 🎂";
+            lyricsDiv.classList.add('visible');
+            createMassiveBurst();
+          }, 500);
+        }
+      }
+      showNextLine();
+    }
+
+    function showWheels() {
+      const wheelsSection = document.getElementById('wheelsSection');
+      wheelsSection.style.display = 'block';
+      initializeWheels();
+      // Scroll to wheels
+      setTimeout(() => {
+        wheelsSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 300);
+    }
+
+    function createBurst() {
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'absolute';
+        particle.style.width = '10px';
+        particle.style.height = '10px';
+        particle.style.background = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3'][Math.floor(Math.random() * 4)];
+        particle.style.borderRadius = '50%';
+        particle.style.left = '50%';
+        particle.style.top = '50%';
+        particle.style.pointerEvents = 'none';
+        document.querySelector('.birthday-card').appendChild(particle);
+        const angle = (Math.PI * 2 * i) / 20;
+        const velocity = 100 + Math.random() * 100;
+        particle.animate([{transform: 'translate(0,0) scale(1)', opacity: 1}, {transform: `translate(${Math.cos(angle)*velocity}px, ${Math.sin(angle)*velocity}px) scale(0)`, opacity: 0}], {
+          duration: 1000,
+          easing: 'cubic-bezier(0, .9, .57, 1)'}).onfinish = () => particle.remove();
+      }
+    }
+
+    function createMassiveBurst() {
+      for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+          const particle = document.createElement('div');
+          particle.style.position = 'fixed';
+          particle.style.width = '8px';
+          particle.style.height = '8px';
+          particle.style.background = `hsl(${Math.random()*360}, 70%, 60%)`;
+          particle.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+          particle.style.left = '50%';
+          particle.style.top = '50%';
+          particle.style.zIndex = '1000';
+          document.body.appendChild(particle);
+          const angle = Math.random() * Math.PI * 2;
+          const velocity = 200 + Math.random() * 300;
+          particle.animate([{transform: 'translate(0,0) rotate(0deg)', opacity: 1}, {transform: `translate(${Math.cos(angle)*velocity}px, ${Math.sin(angle)*velocity}px) rotate(720deg)`, opacity: 0}], {
+            duration: 2000,
+            easing: 'cubic-bezier(0, .9, .57, 1)'}).onfinish = () => particle.remove();
+        }, i * 20);
+      }
+    }
+
+    function createConfetti() {
+      const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#a29bfe', '#fd79a8', '#fff'];
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.position = 'absolute';
+        confetti.style.width = '10px';
+        confetti.style.height = '10px';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-10px';
+        confetti.style.opacity = '0.8';
+        confetti.style.animation = `confettiFall ${5 + Math.random() * 3}s linear infinite`;
+        confetti.style.animationDelay = Math.random() * 5 + 's';
+        document.body.appendChild(confetti);
+      }
+    }
+
+    function createSparkles() {
+      for (let i = 0; i < 30; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.style.position = 'fixed';
+        sparkle.style.width = '4px';
+        sparkle.style.height = '4px';
+        sparkle.style.background = 'white';
+        sparkle.style.borderRadius = '50%';
+        sparkle.style.left = Math.random() * 100 + '%';
+        sparkle.style.top = Math.random() * 100 + '%';
+        sparkle.style.animation = 'sparkleAnim 2s linear infinite';
+        sparkle.style.animationDelay = Math.random() * 2 + 's';
+        sparkle.style.pointerEvents = 'none';
+        document.body.appendChild(sparkle);
+      }
+    }
+    // Initialize on page load
+    createConfetti();
+    createSparkles();
+    // Auto-start after 2 seconds
+    setTimeout(() => {
+      document.querySelector('.play-button').click();
+    }, 2000);
+    // Add confetti animation style
+    const style = document.createElement('style');
+    style.textContent = `
+             @keyframes confettiFall {
+                 0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+             }
+         `;
+    document.head.appendChild(style);
+  </script>
+</body>
+
+</html>
